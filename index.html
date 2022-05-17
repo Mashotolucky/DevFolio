@@ -48,9 +48,11 @@
           .then(function () {
             console.log('SUCCESS!');
             alert("Email sent")
+            document.getElementById('contact-form').reset();
           }, function (error) {
             console.log('FAILED...', error);
             alert("Email Failed");
+            document.getElementById('contact-form').reset();
           });
       });
     }
