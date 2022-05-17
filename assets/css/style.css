@@ -13,6 +13,37 @@ body {
   color: #4e4e4e;
 }
 
+.mouse-cursor-gradient-tracking {
+  padding: 0.5rem 1rem;
+  font-size: .5rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+}
+
+.mouse-cursor-gradient-tracking span {
+  position: relative;
+}
+
+.mouse-cursor-gradient-tracking:before {
+  --size: 0;
+  content: '';
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(circle closest-side, #0078ff, transparent);
+  transform: translate(-10%, -10%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.mouse-cursor-gradient-tracking:hover:before {
+  --size: 200px;
+}
+
 h1,
 h2,
 h3,
