@@ -28,6 +28,34 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <!-- Email JS -->
+  <!-- ================================= -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+      (function() {
+          // https://dashboard.emailjs.com/admin/account
+          emailjs.init('SrBodkrB8F9f17c5G');
+      })();
+  </script>
+  <script type="text/javascript">
+      window.onload = function() {
+          document.getElementById('contact-form').addEventListener('submit', function(event) {
+              event.preventDefault();
+              // generate a five digit number for the contact_number variable
+              this.contact_number.value = Math.random() * 100000 | 0;
+              // these IDs from the previous steps
+              emailjs.sendForm('contact_service', 'contact_form', this)
+                  .then(function() {
+                      console.log('SUCCESS!');
+                      alert("Email sent")
+                  }, function(error) {
+                      console.log('FAILED...', error);
+                      alert("Email Failed");
+                  });
+          });
+      }
+  </script>
+  <!-- =============================End EmailJS============================== -->
 </head>
 
 <body>
@@ -63,7 +91,7 @@
           <!--<p class="display-6 color-d">Hello, world!</p>-->
           <h1 class="hero-title mb-4">I Am Mashoto Molefe</h1>
           <p class="hero-subtitle"><span class="typed"
-              data-typed-items="Designer,Web Developer, Mobile Developer , DevOps"></span></p>
+              data-typed-items="UI/UX Designer,Frontend Developer,Backend Developer ,DevOps"></span></p>
           <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
         </div>
       </div>
@@ -421,23 +449,24 @@
                       </h5>
                     </div>
                     <div>
-                      <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                      <form id="contact-form" class="php-email-form">
+                        <input type="hidden" name="contact_number">
                         <div class="row">
                           <div class="col-md-12 mb-3">
                             <div class="form-group">
-                              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                              <input type="text" name="user_name" class="form-control" id="name" placeholder="Your Name"
                                 required>
                             </div>
                           </div>
                           <div class="col-md-12 mb-3">
                             <div class="form-group">
-                              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                              <input type="email" class="form-control" name="user_email" id="email" placeholder="Your Email"
                                 required>
                             </div>
                           </div>
                           <div class="col-md-12 mb-3">
                             <div class="form-group">
-                              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+                              <input type="text" class="form-control" name="user_subject" id="subject" placeholder="Subject"
                                 required>
                             </div>
                           </div>
@@ -447,13 +476,13 @@
                                 required></textarea>
                             </div>
                           </div>
-                          <div class="col-md-12 text-center my-3">
+                          <!-- <div class="col-md-12 text-center my-3">
                             <div class="loading">Loading</div>
                             <div class="error-message"></div>
                             <div class="sent-message">Your message has been sent. Thank you!</div>
-                          </div>
+                          </div> -->
                           <div class="col-md-12 text-center">
-                            <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                            <button type="submit" value="Send" class="button button-a button-big button-rouded">Send Message</button>
                           </div>
                         </div>
                       </form>
